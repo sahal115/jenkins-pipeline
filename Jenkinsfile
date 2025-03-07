@@ -6,16 +6,17 @@ pipeline {
                 sh 'echo  "clone"'
             }
         }
-stages ('test') {
+stage('test'){
     steps {
         sh 'echo "test"'
     }
 }   
-stage ('create file') {
+stage('create file'){
     steps {
         sh 'touch text-$BUILD_ID' 
     }
 }
     }
 
-}    
+}   
+ 
