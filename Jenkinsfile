@@ -6,7 +6,7 @@ pipeline {
                 sh 'echo  "clone"'
                 sh 'uname -r'
                 sh 'nproc'
-                sh 'uname -a'
+                sh 'uname-a'
             }
         }
 stage('test'){
