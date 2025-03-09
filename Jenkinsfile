@@ -32,4 +32,6 @@ stage('pushImage'){
 
    
  
-}
+  }
+
+ }
