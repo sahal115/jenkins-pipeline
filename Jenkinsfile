@@ -5,6 +5,7 @@ pipeline {
             steps {
                 sh 'trivy fs  . -o result.html'
                 sh 'cat result.html'
+                sh 'nproc'
                
             }
         }
