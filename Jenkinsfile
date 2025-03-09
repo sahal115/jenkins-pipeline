@@ -29,10 +29,10 @@ stage('pushImage'){
         sh 'docker push 941377148643.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci:latest' 
     }
 }
-    }
+    
 
    
  
-  }
+  
 
- }
+ 
