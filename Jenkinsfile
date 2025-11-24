@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+   environment{
+    AWS_REGION ='us-west-2'
+
+    ECR_REPO ='941377148643.dkr.ecr.us-west-2.amazonaws.com/jenkins-ci'
+   }
     stages {
 
         stage('codeScan') {
@@ -12,7 +17,7 @@ pipeline {
 
         stage('dockerLogin') {
             steps {
-                sh 'aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 941377148643.dkr.ecr.us-west-2.amazonaws.com'
+                sh 'aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 941377148643.dkr.ecr.us-west-2.amazonaws.com'
             }
         }
 
@@ -25,16 +30,16 @@ pipeline {
 
         stage('dockerImagetag') {
             steps {
-                sh 'docker tag jenkins-ci:latest 941377148643.dkr.ecr.us-west-2.amazonaws.com/jenkins-ci:latest'
-                sh 'docker tag imageversion 941377148643.dkr.ecr.us-west-2.amazonaws.com/jenkins-ci:v1.$BUILD_NUMBER' 
+                sh 'docker tag jenkins-ci:latest ECR_REPO:latest'
+                sh 'docker tag imageversion ECR_REPO:v1.$BUILD_NUMBER' 
             }
         }
 
         stage('pushImage') {
             steps {
-                sh 'docker push 941377148643.dkr.ecr.us-west-2.amazonaws.com/jenkins-ci:latest'
-                sh 'docker push 941377148643.dkr.ecr.us-west-2.amazonaws.com/jenkins-ci:v1.$BUILD_NUMBER'
-            }
+                sh 'ECR_REPO:latest'
+                sh 'ECR_REPO:v1.$BUILD_NUMBER'
+            } 
         }
 
     } 
