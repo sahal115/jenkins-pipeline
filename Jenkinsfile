@@ -3,7 +3,7 @@ pipeline {
 
    environment {
     AWS_REGION = 'us-west-2'
-    IMAGE_ECR_REPO = ' 941377148643.dkr.ecr.us-west-2.amazonaws.com/jenkins-ci'
+    IMAGE_ECR_REPO =  '941377148643.dkr.ecr.us-west-2.amazonaws.com/jenkins-ci:latest'
     ECR_REPO = '941377148643.dkr.ecr.us-west-2.amazonaws.com'
 
    }
