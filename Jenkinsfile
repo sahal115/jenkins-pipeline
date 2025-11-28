@@ -3,8 +3,8 @@ pipeline {
 
    environment {
     AWS_REGION = 'us-west-2'
-    IMAGE_ECR_REPO =  '941377148643.dkr.ecr.us-west-2.amazonaws.com/jenkins-ci:latest'
-    ECR_REPO = '941377148643.dkr.ecr.us-west-2.amazonaws.com'
+    $IMAGE_ECR_REPO =  '941377148643.dkr.ecr.us-west-2.amazonaws.com/jenkins-ci:latest'
+    $ECR_REPO = '941377148643.dkr.ecr.us-west-2.amazonaws.com'
 
    }
 
@@ -33,7 +33,7 @@ pipeline {
             sh "docker tag jenkins-ci:latest\
              $IMAGE_ECR_REPO:latest"
             sh "docker tag imageversion \
-            $IMAGE_ECR_REPO:v1.$BUILD_NUMBER"
+             $ECR_REPO:v1.$BUILD_NUMBER"
         }    
         }
     
@@ -42,7 +42,7 @@ pipeline {
             sh "docker push \
             $IMAGE_ECR_REPO:latest"
             sh "docker push \
-            $IMAGE_ECR_REPO:v1.$BUILD_NUMBER"
+            $ECR_REPO:v1.$BUILD_NUMBER"
         }
     }
    } 
